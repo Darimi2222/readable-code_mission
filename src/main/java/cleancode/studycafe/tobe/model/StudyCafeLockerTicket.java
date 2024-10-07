@@ -1,19 +1,19 @@
 package cleancode.studycafe.tobe.model;
 
-public class StudyCafeLockerPass {
+public class StudyCafeLockerTicket {
 
     private final StudyCafePassType passType;
     private final int duration;
     private final int price;
 
-    private StudyCafeLockerPass(StudyCafePassType passType, int duration, int price) {
+    private StudyCafeLockerTicket(StudyCafePassType passType, int duration, int price) {
         this.passType = passType;
         this.duration = duration;
         this.price = price;
     }
 
-    public static StudyCafeLockerPass of(StudyCafePassType passType, int duration, int price) {
-        return new StudyCafeLockerPass(passType, duration, price);
+    public static StudyCafeLockerTicket of(StudyCafePassType passType, int duration, int price) {
+        return new StudyCafeLockerTicket(passType, duration, price);
     }
 
     public StudyCafePassType getPassType() {
