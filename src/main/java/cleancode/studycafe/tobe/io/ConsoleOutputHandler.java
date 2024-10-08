@@ -6,7 +6,7 @@ import cleancode.studycafe.tobe.model.StudyCafePass;
 
 import java.util.List;
 
-public class ConsoleOutputHandler implements OutputHandler{
+public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
     public void showWelcomeMessage() {
@@ -39,12 +39,8 @@ public class ConsoleOutputHandler implements OutputHandler{
     @Override
     public void askLockerTicket(StudyCafeLockerTicket LockerTicket) {
         System.out.println();
-        String askMessage = String.format(
-                "사물함을 이용하시겠습니까? (%s)",
-                LockerTicket.display()
-        );
 
-        System.out.println(askMessage);
+        System.out.printf("사물함을 이용하시겠습니까? (%s)%n", LockerTicket.display());
         System.out.println("1. 예 | 2. 아니오");
     }
 
@@ -65,7 +61,7 @@ public class ConsoleOutputHandler implements OutputHandler{
             System.out.println("이벤트 할인 금액: " + discountPrice + "원");
         }
 
-        int totalPrice = order.calculatePassPrice(discountPrice) + order.calculateLockerPrice();
+        int totalPrice = order.calculatePassPrice() + order.calculateLockerPrice();
         System.out.println("총 결제 금액: " + totalPrice + "원");
         System.out.println();
     }

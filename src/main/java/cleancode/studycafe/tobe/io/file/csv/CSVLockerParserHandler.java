@@ -1,12 +1,13 @@
-package cleancode.studycafe.tobe.io.file;
+package cleancode.studycafe.tobe.io.file.csv;
 
+import cleancode.studycafe.tobe.io.file.LockerFileParserHandler;
 import cleancode.studycafe.tobe.model.StudyCafeLockerTicket;
 import cleancode.studycafe.tobe.model.StudyCafePassType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVLockerTicketParserHandler implements LockerTicketFileParserHandler {
+public class CSVLockerParserHandler implements LockerFileParserHandler {
 
     @Override
     public List<StudyCafeLockerTicket> parse(List<String> lines) {

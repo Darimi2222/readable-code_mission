@@ -1,11 +1,10 @@
 package cleancode.studycafe.tobe.io.file;
 
 import cleancode.studycafe.tobe.model.StudyCafeLockerTicket;
-import cleancode.studycafe.tobe.model.StudyCafePass;
 
 import java.util.List;
 
-public interface LockerTicketFileParserHandler {
+public interface LockerFileParserHandler {
 
     List<StudyCafeLockerTicket> parse(List<String> lines);
 

@@ -5,7 +5,7 @@ public class Order {
     private final StudyCafePass studyCafePass;
     private final StudyCafeLockerTicket studyCafeLockerTicket;
 
-    public Order(StudyCafePass studyCafePass, StudyCafeLockerTicket studyCafeLockerTicket) {
+    private Order(StudyCafePass studyCafePass, StudyCafeLockerTicket studyCafeLockerTicket) {
         this.studyCafePass = studyCafePass;
         this.studyCafeLockerTicket = studyCafeLockerTicket;
     }
@@ -30,8 +30,8 @@ public class Order {
         return (int) (studyCafePass.getPrice() * studyCafePass.getDiscountRate());
     }
 
-    public int calculatePassPrice(int discountPrice){
-        return studyCafePass.getPrice() - discountPrice;
+    public int calculatePassPrice(){
+        return studyCafePass.getPrice() - calculateDiscountPrice();
     }
 
     public int calculateLockerPrice(){

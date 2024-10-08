@@ -1,5 +1,6 @@
-package cleancode.studycafe.tobe.io.file;
+package cleancode.studycafe.tobe.io.file.csv;
 
+import cleancode.studycafe.tobe.io.file.PassFileParserHandler;
 import cleancode.studycafe.tobe.model.StudyCafePass;
 import cleancode.studycafe.tobe.model.StudyCafePassType;
 

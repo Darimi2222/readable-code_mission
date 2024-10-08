@@ -1,10 +1,11 @@
 package cleancode.studycafe.tobe;
 
+import cleancode.studycafe.tobe.config.StudyCafeHandlerFactory;
 import cleancode.studycafe.tobe.exception.AppException;
 import cleancode.studycafe.tobe.io.InputHandler;
 import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.io.file.FileReadHandler;
-import cleancode.studycafe.tobe.io.file.LockerTicketFileParserHandler;
+import cleancode.studycafe.tobe.io.file.LockerFileParserHandler;
 import cleancode.studycafe.tobe.io.file.PassFileParserHandler;
 import cleancode.studycafe.tobe.model.Order;
 import cleancode.studycafe.tobe.model.StudyCafeLockerTicket;
@@ -22,14 +23,14 @@ public class StudyCafePassMachine {
     private final OutputHandler outputHandler;
     private final FileReadHandler fileHandler;
     private final PassFileParserHandler passFileParserHandler;
-    private final LockerTicketFileParserHandler lockerTicketFileParserHandler;
+    private final LockerFileParserHandler lockerFileParserHandler;
 
-    public StudyCafePassMachine(InputHandler inputHandler, OutputHandler outputHandler, FileReadHandler fileHandler, PassFileParserHandler passFileParserHandler, LockerTicketFileParserHandler lockerTicketFileParserHandler) {
-        this.inputHandler = inputHandler;
-        this.outputHandler = outputHandler;
-        this.fileHandler = fileHandler;
-        this.passFileParserHandler = passFileParserHandler;
-        this.lockerTicketFileParserHandler = lockerTicketFileParserHandler;
+    public StudyCafePassMachine() {
+        this.inputHandler = StudyCafeHandlerFactory.createInputHandler();
+        this.outputHandler = StudyCafeHandlerFactory.createOutputHandler();
+        this.fileHandler = StudyCafeHandlerFactory.createFileReadHandler();
+        this.passFileParserHandler = StudyCafeHandlerFactory.createPassFileParserHandler();
+        this.lockerFileParserHandler = StudyCafeHandlerFactory.createLockerFileParserHandler();
     }
 
     public void run() {
@@ -39,7 +40,7 @@ public class StudyCafePassMachine {
                 outputHandler.showAnnouncement();
 
                 outputHandler.askPassTypeSelection();
-                StudyCafePassType studyCafePassType = inputHandler.getPassTypeSelectingUserAction();
+                StudyCafePassType studyCafePassType = inputHandler.getPassTypeFromUser();
 
                 orderPassBasedOn(studyCafePassType);
                 break;
@@ -71,7 +72,7 @@ public class StudyCafePassMachine {
             StudyCafePass selectedPass = getFinalSelectedFixedPass(studyCafePasses);
 
             List<String> lockerTicketListString = fileHandler.readFile(LOCKER_TICKET_LIST_PATH);
-            List<StudyCafeLockerTicket> lockerTickets = lockerTicketFileParserHandler.parse(lockerTicketListString);
+            List<StudyCafeLockerTicket> lockerTickets = lockerFileParserHandler.parse(lockerTicketListString);
             StudyCafeLockerTicket lockerTicket = getLockerTicket(lockerTickets, selectedPass);
 
             if (doseNotLockerTicketExist(lockerTicket)) {
@@ -92,7 +93,7 @@ public class StudyCafePassMachine {
 
     private boolean doesUserUseLocker() {
         boolean lockerUsedOrNot;
-        lockerUsedOrNot = inputHandler.getSelectLockerTicket();
+        lockerUsedOrNot = inputHandler.getSelectingLockerTicketFromUser();
         return lockerUsedOrNot;
     }
 
@@ -145,20 +146,20 @@ public class StudyCafePassMachine {
     private Order getFinalSelectedHourlyPass(List<StudyCafePass> studyCafePasses) {
         List<StudyCafePass> hourlyPasses = getHourlyPasses(studyCafePasses);
         outputHandler.showPassListForSelection(hourlyPasses);
-        StudyCafePass selectPass = inputHandler.getSelectPass(hourlyPasses);
+        StudyCafePass selectPass = inputHandler.getSelectingPassFromUser(hourlyPasses);
         return Order.of(selectPass);
     }
 
     private Order getFinalSelectedWeeklyPass(List<StudyCafePass> studyCafePasses) {
         List<StudyCafePass> weeklyPasses = getWeeklyPasses(studyCafePasses);
         outputHandler.showPassListForSelection(weeklyPasses);
-        StudyCafePass selectPass = inputHandler.getSelectPass(weeklyPasses);
+        StudyCafePass selectPass = inputHandler.getSelectingPassFromUser(weeklyPasses);
         return Order.of(selectPass);
     }
 
     private StudyCafePass getFinalSelectedFixedPass(List<StudyCafePass> studyCafePasses) {
         List<StudyCafePass> fixedPasses = getFixedPasses(studyCafePasses);
         outputHandler.showPassListForSelection(fixedPasses);
-        return inputHandler.getSelectPass(fixedPasses);
+        return inputHandler.getSelectingPassFromUser(fixedPasses);
     }
 }

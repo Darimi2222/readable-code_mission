@@ -11,7 +11,7 @@ public class ConsoleInputHandler implements InputHandler{
     private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
-    public StudyCafePassType getPassTypeSelectingUserAction() {
+    public StudyCafePassType getPassTypeFromUser() {
         String userInput = SCANNER.nextLine();
 
         if ("1".equals(userInput)) {
@@ -23,14 +23,15 @@ public class ConsoleInputHandler implements InputHandler{
         if ("3".equals(userInput)) {
             return StudyCafePassType.FIXED;
         }
+
         throw new AppException("잘못된 입력입니다.");
     }
 
     @Override
-    public StudyCafePass getSelectPass(List<StudyCafePass> passes) {
+    public StudyCafePass getSelectingPassFromUser(List<StudyCafePass> passes) {
         String userInput = SCANNER.nextLine();
-        int selectedIndex = Integer.parseInt(userInput) - 1;
 
+        int selectedIndex = Integer.parseInt(userInput) - 1;
         if(selectedIndex < 0 || selectedIndex > passes.size() - 1){
             throw new AppException("잘못된 입력입니다.");
         }
@@ -39,7 +40,7 @@ public class ConsoleInputHandler implements InputHandler{
     }
 
     @Override
-    public boolean getSelectLockerTicket() {
+    public boolean getSelectingLockerTicketFromUser() {
         String userInput = SCANNER.nextLine();
 
         if ("1".equals(userInput)) {
