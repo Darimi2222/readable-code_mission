@@ -10,11 +10,7 @@ public class Order {
         this.studyCafeLockerTicket = studyCafeLockerTicket;
     }
 
-    public static Order of(StudyCafePass studyCafePass){
-        return new Order(studyCafePass, null);
-    }
-
-    public static Order ofUsedLocker(StudyCafePass studyCafePass, StudyCafeLockerTicket studyCafeLockerTicket){
+    public static Order of(StudyCafePass studyCafePass, StudyCafeLockerTicket studyCafeLockerTicket){
         return new Order(studyCafePass, studyCafeLockerTicket);
     }
 

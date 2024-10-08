@@ -11,6 +11,6 @@ public interface InputHandler {
 
     StudyCafePass getSelectingPassFromUser(List<StudyCafePass> passes);
 
-    public boolean getSelectingLockerTicketFromUser();
+    boolean getSelectingLockerTicketFromUser();
 
 }
