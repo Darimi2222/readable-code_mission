@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.tobe.order.model;
 
 public enum LockerRule {
     ACTIVE("사물함 이용 허용"),

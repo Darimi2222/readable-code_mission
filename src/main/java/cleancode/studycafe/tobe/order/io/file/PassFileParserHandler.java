@@ -1,6 +1,6 @@
-package cleancode.studycafe.tobe.io.file;
+package cleancode.studycafe.tobe.order.io.file;
 
-import cleancode.studycafe.tobe.model.StudyCafePass;
+import cleancode.studycafe.tobe.order.model.StudyCafePass;
 
 import java.util.List;
 

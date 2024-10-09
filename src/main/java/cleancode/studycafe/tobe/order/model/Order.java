@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.tobe.order.model;
 
 public class Order {
 
@@ -12,14 +12,6 @@ public class Order {
 
     public static Order of(StudyCafePass studyCafePass, StudyCafeLockerTicket studyCafeLockerTicket){
         return new Order(studyCafePass, studyCafeLockerTicket);
-    }
-
-    public StudyCafePass getStudyCafePass() {
-        return studyCafePass;
-    }
-
-    public StudyCafeLockerTicket getStudyCafeLockerTicket() {
-        return studyCafeLockerTicket;
     }
 
     public int calculateDiscountPrice(){
@@ -36,6 +28,14 @@ public class Order {
         }
 
         return studyCafeLockerTicket.getPrice();
+    }
+
+    public StudyCafePass getStudyCafePass() {
+        return studyCafePass;
+    }
+
+    public StudyCafeLockerTicket getStudyCafeLockerTicket() {
+        return studyCafeLockerTicket;
     }
 
 }

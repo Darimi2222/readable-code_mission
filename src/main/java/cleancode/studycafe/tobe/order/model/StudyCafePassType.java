@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.tobe.order.model;
 
 public enum StudyCafePassType {
 
@@ -15,7 +15,7 @@ public enum StudyCafePassType {
         this.lockerRule = lockerRule;
     }
 
-    public LockerRule getLockerRule() {
-        return lockerRule;
+    public boolean doesNotUseLocker() {
+        return lockerRule == LockerRule.INACTIVE;
     }
 }

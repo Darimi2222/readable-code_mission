@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.tobe.order.model;
 
 public class StudyCafePass {
 
@@ -18,6 +18,11 @@ public class StudyCafePass {
         return new StudyCafePass(passType, duration, price, discountRate);
     }
 
+    public boolean typeAndDurationIsSame(StudyCafeLockerTicket lockerTicket){
+        return this.passType == lockerTicket.getPassType()
+                && this.duration == lockerTicket.getDuration();
+    }
+
     public StudyCafePassType getPassType() {
         return passType;
     }
@@ -28,11 +33,6 @@ public class StudyCafePass {
 
     public double getDiscountRate() {
         return discountRate;
-    }
-
-    public boolean typeAndDurationIsSame(StudyCafeLockerTicket lockerTicket){
-        return this.passType == lockerTicket.getPassType()
-                && this.duration == lockerTicket.getDuration();
     }
 
     public String display() {

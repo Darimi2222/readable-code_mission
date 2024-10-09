@@ -1,8 +1,8 @@
-package cleancode.studycafe.tobe.io;
+package cleancode.studycafe.tobe.order.io;
 
-import cleancode.studycafe.tobe.model.Order;
-import cleancode.studycafe.tobe.model.StudyCafeLockerTicket;
-import cleancode.studycafe.tobe.model.StudyCafePass;
+import cleancode.studycafe.tobe.order.model.Order;
+import cleancode.studycafe.tobe.order.model.StudyCafeLockerTicket;
+import cleancode.studycafe.tobe.order.model.StudyCafePass;
 
 import java.util.List;
 
@@ -37,10 +37,10 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     @Override
-    public void askLockerTicket(StudyCafeLockerTicket LockerTicket) {
+    public void askLockerTicket(StudyCafeLockerTicket lockerTicket) {
         System.out.println();
 
-        System.out.printf("사물함을 이용하시겠습니까? (%s)%n", LockerTicket.display());
+        System.out.printf("사물함을 이용하시겠습니까? (%s)%n", lockerTicket.display());
         System.out.println("1. 예 | 2. 아니오");
     }
 

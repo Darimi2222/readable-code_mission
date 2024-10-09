@@ -1,6 +1,6 @@
 package cleancode.studycafe.tobe;
 
-import cleancode.studycafe.tobe.config.StudyCafeHandlerFactory;
+import cleancode.studycafe.tobe.order.StudyCafePassMachine;
 
 public class StudyCafeApplication {
 

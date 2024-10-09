@@ -1,6 +1,7 @@
-package cleancode.studycafe.tobe.io.file.csv;
+package cleancode.studycafe.tobe.order.io.file.csv;
 
-import cleancode.studycafe.tobe.io.file.FileReadHandler;
+import cleancode.studycafe.tobe.order.exception.AppException;
+import cleancode.studycafe.tobe.order.io.file.FileReadHandler;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,7 @@ public class CSVFileReadHandler implements FileReadHandler {
         try {
             return Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
-            throw new RuntimeException("파일을 읽는데 실패했습니다.", e);
+            throw new AppException("파일을 읽는데 실패했습니다.");
         }
     }
 

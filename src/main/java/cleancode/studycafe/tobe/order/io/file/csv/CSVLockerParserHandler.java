@@ -1,8 +1,8 @@
-package cleancode.studycafe.tobe.io.file.csv;
+package cleancode.studycafe.tobe.order.io.file.csv;
 
-import cleancode.studycafe.tobe.io.file.LockerFileParserHandler;
-import cleancode.studycafe.tobe.model.StudyCafeLockerTicket;
-import cleancode.studycafe.tobe.model.StudyCafePassType;
+import cleancode.studycafe.tobe.order.io.file.LockerFileParserHandler;
+import cleancode.studycafe.tobe.order.model.StudyCafeLockerTicket;
+import cleancode.studycafe.tobe.order.model.StudyCafePassType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ public class CSVLockerParserHandler implements LockerFileParserHandler {
             int duration = Integer.parseInt(values[1]);
             int price = Integer.parseInt(values[2]);
 
-            StudyCafeLockerTicket LockerTicket = StudyCafeLockerTicket.of(studyCafePassType, duration, price);
-            lockerTickets.add(LockerTicket);
+            StudyCafeLockerTicket lockerTicket = StudyCafeLockerTicket.of(studyCafePassType, duration, price);
+            lockerTickets.add(lockerTicket);
         }
         return lockerTickets;
     }
