@@ -1,19 +1,26 @@
 package cleancode.studycafe.tobeByCoach;
 
 import cleancode.studycafe.tobeByCoach.exception.AppException;
-import cleancode.studycafe.tobeByCoach.io.StudyCafeFileHandler;
 import cleancode.studycafe.tobeByCoach.io.StudyCafeIOHandler;
 import cleancode.studycafe.tobeByCoach.model.order.StudyCafePassOrder;
 import cleancode.studycafe.tobeByCoach.model.pass.*;
 import cleancode.studycafe.tobeByCoach.model.pass.locker.StudyCafeLockerPass;
 import cleancode.studycafe.tobeByCoach.model.pass.locker.StudyCafeLockerPasses;
+import cleancode.studycafe.tobeByCoach.provider.LockerPassProvider;
+import cleancode.studycafe.tobeByCoach.provider.SeatPassProvider;
 
 import java.util.List;
 import java.util.Optional;
 
 public class StudyCafePassMachine {
     private final StudyCafeIOHandler ioHandler = new StudyCafeIOHandler();
-    private final StudyCafeFileHandler studyCafeFileHandler = new StudyCafeFileHandler();
+    private final SeatPassProvider seatPassProvider;
+    private final LockerPassProvider lockerPassProvider;
+
+    public StudyCafePassMachine(SeatPassProvider seatPassProvider, LockerPassProvider lockerPassProvider) {
+        this.seatPassProvider = seatPassProvider;
+        this.lockerPassProvider = lockerPassProvider;
+    }
 
     public void run() {
         try {
@@ -45,7 +52,7 @@ public class StudyCafePassMachine {
     }
 
     private List<StudyCafeSeatPass> findPassCandidatesBy(StudyCafePassType studyCafePassType) {
-        StudyCafeSeatPasses allPasses = studyCafeFileHandler.readStudyCafeSeatPasses();
+        StudyCafeSeatPasses allPasses = seatPassProvider.getSeatPasses();
         return allPasses.findPassBy(studyCafePassType);
     }
 
@@ -70,7 +77,7 @@ public class StudyCafePassMachine {
     }
 
     private Optional<StudyCafeLockerPass> findLockerPassCandidateBy(StudyCafeSeatPass pass) {
-        StudyCafeLockerPasses allLockerPasses = studyCafeFileHandler.readLockerPasses();
+        StudyCafeLockerPasses allLockerPasses = lockerPassProvider.getLockerPasses();
 
         return allLockerPasses.findLockerPassBy(pass);
     }
